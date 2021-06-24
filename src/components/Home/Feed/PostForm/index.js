@@ -1,4 +1,5 @@
 import { Avatar } from "@material-ui/core";
+import firebase from "firebase";
 import {
   Videocam as VideocamIcon,
   InsertEmoticon as InsertEmoticonIcon,
@@ -6,6 +7,7 @@ import {
 } from "@material-ui/icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { firestore } from "../../../../firebase/firebase";
 import { selectAuthUser } from "../../../../store/auth/authSlice";
 import ActionItem from "../../../ActionItem";
 import styles from "./inedx.module.css";
@@ -15,6 +17,14 @@ function PostForm() {
   const [textInputValue, setTextInputValue] = useState("");
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    const text = textInputValue.trim();
+    if (text.length === 0) return;
+    firestore.collection("posts").add({
+      username: authUser?.displayName,
+      photoURL: authUser?.photoURL,
+      text: text,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
     setTextInputValue("");
   };
   return (

@@ -13,7 +13,7 @@ function Post({ profilePicSrc, imageSrc, username, timestamp, text }) {
         <Avatar src={profilePicSrc} className={styles.avatar} />
         <div className={styles.headerInfo}>
           <h3>{username}</h3>
-          <p>{timestamp}</p>
+          <p>{timestamp?.toDate()?.toString()}</p>
         </div>
       </div>
       <div className={styles.main}>{text}</div>
