@@ -1,4 +1,6 @@
 import { Avatar, IconButton } from "@material-ui/core";
+import { useSelector } from "react-redux";
+
 import {
   Home as HomeIcon,
   Search as SearchIcon,
@@ -11,10 +13,12 @@ import {
   Forum as ForumIcon,
   NotificationsActive as NotificationsActiveIcon,
 } from "@material-ui/icons";
+import { selectAuthUser } from "../../store/auth/authSlice";
 import HeaderOption from "./HeaderOption";
 
 import styles from "./index.module.css";
 function Header() {
+  const authUser = useSelector(selectAuthUser);
   return (
     <div className={styles.container}>
       <div className={styles.headerLeft}>
@@ -39,8 +43,8 @@ function Header() {
       </div>
       <div className={styles.headerRight}>
         <div className={styles.userInfo}>
-          <Avatar />
-          <span>Abbas Moharami</span>
+          <Avatar src={authUser?.photoURL} />
+          <span>{authUser?.displayName}</span>
         </div>
         <div className={styles.headerRightActionsList}>
           <IconButton>
