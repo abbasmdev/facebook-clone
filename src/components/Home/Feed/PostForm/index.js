@@ -5,9 +5,13 @@ import {
   PhotoLibrary as PhotoLibraryIcon,
 } from "@material-ui/icons";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "../../../../store/auth/authSlice";
 import ActionItem from "../../../ActionItem";
 import styles from "./inedx.module.css";
 function PostForm() {
+  const authUser = useSelector(selectAuthUser);
+
   const [textInputValue, setTextInputValue] = useState("");
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -16,7 +20,7 @@ function PostForm() {
   return (
     <div className={styles.container}>
       <div className={styles.inputsContainer}>
-        <Avatar />
+        <Avatar src={authUser?.photoURL} />
         <form
           onSubmit={formSubmitHandler}
           className={styles.textInputContainer}
@@ -26,7 +30,7 @@ function PostForm() {
             type="text"
             value={textInputValue}
             onChange={(e) => setTextInputValue(e.target.value)}
-            placeholder="What's on your mind?"
+            placeholder={`What's on your mind, ${authUser?.displayName}?`}
           />
           <button type="submit" hidden></button>
         </form>
