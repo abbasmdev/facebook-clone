@@ -1,7 +1,22 @@
-# Getting Started with Create React App
+# What is this project?
+Facebook clone app with React.js, Redux, Firebase, Google auth, and much more.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bofore start
+Create file in path **src/firebase/firebaseConfig.js** with following content. make sure to change values with your own firebase config.
 
+```javascript
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+};
+
+export default firebaseConfig;
+
+```
 ## Available Scripts
 
 In the project directory, you can run:
