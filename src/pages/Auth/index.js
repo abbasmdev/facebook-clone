@@ -1,7 +1,16 @@
 import { Button } from "@material-ui/core";
+import {
+  auth as firebaseAuth,
+  googleAuthProvider,
+} from "../../firebase/firebase";
 import styles from "./index.module.css";
 function Auth() {
-  const loginBtnClickHandler = () => {};
+  const loginBtnClickHandler = () => {
+    firebaseAuth
+      .signInWithPopup(googleAuthProvider)
+      .then((r) => {})
+      .catch((e) => alert(e.message || "Error on signing in with google."));
+  };
 
   return (
     <div className={styles.container}>
