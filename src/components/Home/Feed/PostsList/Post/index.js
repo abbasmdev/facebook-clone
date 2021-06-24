@@ -4,7 +4,7 @@ import {
   Share as ShareIcon,
   Comment as CommentIcon,
 } from "@material-ui/icons";
-import ActionItem from "../../../ActionItem";
+import ActionItem from "../../../../ActionItem";
 import styles from "./index.module.css";
 function Post({ profilePicSrc, imageSrc, username, timestamp, text }) {
   return (
