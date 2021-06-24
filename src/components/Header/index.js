@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from "@material-ui/core";
+import { Avatar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import { useSelector } from "react-redux";
 
 import {
@@ -13,12 +13,26 @@ import {
   Forum as ForumIcon,
   NotificationsActive as NotificationsActiveIcon,
 } from "@material-ui/icons";
+import { auth as firebaseAuth } from "../../firebase/firebase";
 import { selectAuthUser } from "../../store/auth/authSlice";
 import HeaderOption from "./HeaderOption";
 
 import styles from "./index.module.css";
+import React from "react";
 function Header() {
   const authUser = useSelector(selectAuthUser);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const logoutHandler = () => {
+    firebaseAuth.signOut();
+  };
   return (
     <div className={styles.container}>
       <div className={styles.headerLeft}>
@@ -57,9 +71,24 @@ function Header() {
             <NotificationsActiveIcon />
           </IconButton>
           <IconButton>
-            <ExpandMoreIcon />
+            <ExpandMoreIcon onClick={handleClick} />
           </IconButton>
         </div>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem disabled onClick={handleClose}>
+            Profile
+          </MenuItem>
+          <MenuItem disabled onClick={handleClose}>
+            My account
+          </MenuItem>
+          <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+        </Menu>
       </div>
     </div>
   );
