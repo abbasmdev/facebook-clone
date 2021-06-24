@@ -5,7 +5,7 @@ import {
   PhotoLibrary as PhotoLibraryIcon,
 } from "@material-ui/icons";
 import { useState } from "react";
-import ActionItem from "./ActionItem";
+import ActionItem from "../../../ActionItem";
 import styles from "./inedx.module.css";
 function PostForm() {
   const [textInputValue, setTextInputValue] = useState("");

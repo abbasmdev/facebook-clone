@@ -8,3 +8,10 @@
 .storyReel {
   height: 200px;
 }
+.postsList {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
