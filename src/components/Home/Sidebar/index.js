@@ -9,12 +9,15 @@ import {
 } from "@material-ui/icons";
 import SidebarItem from "./SideabarItem";
 import styles from "./index.module.css";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "../../../store/auth/authSlice";
 function Sidebar() {
+  const authUser = useSelector(selectAuthUser);
   return (
     <div className={styles.container}>
       <div className={styles.userInfoContainer}>
-        <Avatar />
-        <h4>Abbas Moharami</h4>
+        <Avatar src={authUser?.photoURL} />
+        <h4>{authUser?.displayName}</h4>
       </div>
       <SidebarItem Icon={FlagIcon} label="Pages" />
       <SidebarItem Icon={SupervisorAccountIcon} label="Friends" />
